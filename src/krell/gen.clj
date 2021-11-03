@@ -41,7 +41,7 @@
     (util/mkdirs out-file)
     (write-if-different out-file
       (-> source
-        (string/replace "$METRO_SERVER_IP" (get-in repl-env [:options :host] "192.168.1.8"))
+        (string/replace "$METRO_SERVER_IP" "172.31.255.8")
         (string/replace "$METRO_SERVER_PORT" (str (:metro-port opts 8081)))
         (string/replace "$CLOSURE_BASE_JS" (pr-str goog-base))
         (string/replace "$CLOSURE_DEPS_JS" (pr-str goog-deps))
@@ -60,7 +60,7 @@
     (write-if-different out-file
       (-> source
         (string/replace "$KRELL_VERBOSE" (str (or (-> repl-env :options :krell/verbose) false)))
-        (string/replace "$KRELL_SERVER_IP" (get-in repl-env [:options :host] "192.168.1.8"))
+        (string/replace "$KRELL_SERVER_IP" "172.31.255.8")
         (string/replace "$KRELL_SERVER_PORT" (-> repl-env :options :port str))))))
 
 (defn write-assets-js
